@@ -4,20 +4,132 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Hello HTML</title>
+    <title>Homepage | Welcome</title>
+
     <link rel="stylesheet" href="/style.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:700&display=swap" rel="stylesheet" />
 </head>
 
 <body>
-    <h1>Hello, HTML.</h1>
-    <p>Do not use until Challenge #12</p>
-    <form action="/name" method="post">
-        <label>First Name :</label>
-        <input type="text" name="first" value="John"><br>
-        <label>Last Name :</label>
-        <input type="text" name="last" value="Doe"><br><br>
-        <input type="submit" value="Submit">
-    </form>
+    <!-- START NAV -->
+
+    <nav id="navbar" class="nav">
+        <ul class="nav-list">
+            <li>
+                <a href="#welcome-section">About</a>
+            </li>
+            <li>
+                <a href="#projects">Work</a>
+            </li>
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- END NAV -->
+
+    <!-- START WELCOME SECTION -->
+
+    <section id="welcome-section" class="welcome-section">
+        <h1>Hey I am Khoi</h1>
+        <p>a web developer</p>
+    </section>
+
+    <!-- END WELCOME SECTION -->
+
+    <!-- START PROJECTS SECTION -->
+
+    <section id="projects" class="projects-section">
+        <h2 class="projects-section-header">These are some projects</h2>
+
+        <div class="projects-grid">
+
+            <!-- <a href="https://codepen.io/freeCodeCamp/full/zNqgVx" target="_blank" class="project project-tile">
+                <img class="project-image" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/images/tribute.jpg" alt="project" />
+                <p class="project-title">
+                    <span class="code">&lt;</span> Tribute Page
+                    <span class="code">&#47;&gt;</span>
+                </p>
+            </a>
+            <a href="https://codepen.io/freeCodeCamp/full/qRZeGZ" target="_blank" class="project project-tile">
+                <img class="project-image" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/images/random-quote-machine.png" alt="project" />
+                <p class="project-title">
+                    <span class="code">&lt;</span> Random Quote Machine
+                    <span class="code">&#47;&gt;</span>
+                </p>
+            </a>
+            <a href="https://codepen.io/freeCodeCamp/full/wgGVVX" target="_blank" class="project project-tile">
+                <img class="project-image" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/images/calc.png" alt="project" />
+                <p class="project-title">
+                    <span class="code">&lt;</span> JavaScript Calculator
+                    <span class="code">&#47;&gt;</span>
+                </p>
+            </a>
+            <a href="https://codepen.io/freeCodeCamp/full/mVEJag" target="_blank" class="project project-tile">
+                <img class="project-image" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/images/map.jpg" alt="project" />
+                <p class="project-title">
+                    <span class="code">&lt;</span> Map Data Across the Globe
+                    <span class="code">&#47;&gt;</span>
+                </p>
+            </a>
+            <a href="https://codepen.io/freeCodeCamp/full/wGqEga" target="_blank" class="project project-tile">
+                <img class="project-image" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/images/wiki.png" alt="project" />
+                <p class="project-title">
+                    <span class="code">&lt;</span> Wikipedia Viewer
+                    <span class="code">&#47;&gt;</span>
+                </p>
+            </a>
+            <a href="https://codepen.io/freeCodeCamp/full/KzXQgy" target="_blank" class="project project-tile">
+                <img class="project-image" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/images/tic-tac-toe.png" alt="project" />
+                <p class="project-title">
+                    <span class="code">&lt;</span> Tic Tac Toe Game
+                    <span class="code">&#47;&gt;</span>
+                </p>
+            </a> -->
+        </div>
+
+        <a href="https://github.com/vuhuykhoi" class="btn btn-show-all" target="_blank">Show all<i class="fas fa-chevron-right"></i
+    ></a>
+    </section>
+
+    <!-- END PROJECTS SECTION -->
+
+    <!-- START CONTACT SECTION -->
+
+    <section id="contact" class="contact-section">
+        <div class="contact-section-header">
+            <h2>Let's work together...</h2>
+            <p>How do you take your coffee?</p>
+        </div>
+        <div class="contact-links">
+            <a href="https://facebook.com/khoivh97" target="_blank" class="btn contact-details"><i class="fab fa-facebook-square"></i> Facebook</a
+      >
+      <a id="profile-link"
+        href="https://github.com/vuhuykhoi"
+        target="_blank"
+        class="btn contact-details"
+        ><i class="fab fa-github"></i> GitHub</a>
+            <a href="mailto:vhk.forwork@gmail.com" class="btn contact-details"><i class="fas fa-at"></i> Send a mail</a>
+        </div>
+    </section>
+
+    <!-- END CONTACT SECTION -->
+
+    <!-- START FOOTER SECTION -->
+
+
+    <!-- END FOOTER SECTION -->
 </body>
+<footer>
+    <p>
+    </p>
+    <p>
+        &copy; Created by VuHuyKhoi
+    </p>
+</footer>
 
 </html>
