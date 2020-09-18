@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
 
 //Sever IP - Port
 app.set('port', process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3000);
-app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.IP || "127.0.0.1");
+app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.IP);
 
 var server = http.createServer(app);
 server.listen(app.get('port'), app.get('ip'), function() {
