@@ -1,0 +1,11 @@
+{
+    "name": "myweb",
+    "version": "1.0.0",
+    "description": "myweb. free to create",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "Vu Huy Khoi",
+    "license": "MIT"
+}
