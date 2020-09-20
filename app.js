@@ -3,9 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var mongoose = require('mongoose');
+require('dotenv/config');
 
 var app = express();
 
@@ -37,5 +38,11 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('pages/error');
 });
+
+// #,
+//Connect to DB
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true },
+    () => console.log('connected to DB!')
+);
 
 module.exports = app;
