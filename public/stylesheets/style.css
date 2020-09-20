@@ -90,31 +90,31 @@ body {
     color: var(--main-white);
 }
 
-.home-container h1,
+h1,
 h2 {
     font-family: 'Raleway', sans-serif;
     font-weight: 700;
     text-align: center;
 }
 
-.home-container h1 {
+h1 {
     font-size: 6rem;
 }
 
-.home-container h2 {
+h2 {
     font-size: 4.2rem;
 }
 
-.home-container ul {
+ul {
     list-style: none;
 }
 
-.home-container a {
+a {
     text-decoration: none;
     color: var(--main-white);
 }
 
-.home-container img {
+img {
     display: block;
     width: 100%;
 }
@@ -122,7 +122,7 @@ h2 {
 
 /* nav */
 
-.home-container .nav {
+.nav {
     display: flex;
     justify-content: flex-end;
     position: fixed;
@@ -134,27 +134,27 @@ h2 {
     z-index: 10;
 }
 
-.home-container .nav-list {
+.nav-list {
     display: flex;
     margin-right: 2rem;
 }
 
 @media (max-width: 28.75em) {
-    .home-container .nav {
+    .nav {
         justify-content: center;
     }
-    .home-container .nav-list {
+    .nav-list {
         margin: 0 1rem;
     }
 }
 
-.home-container .nav-list a {
+.nav-list a {
     display: block;
     font-size: 2.2rem;
     padding: 2rem;
 }
 
-.home-container .nav-list a:hover {
+.nav-list a:hover {
     background: var(--main-blue);
 }
 

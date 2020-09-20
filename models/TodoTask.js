@@ -1,11 +1,7 @@
 var mongoose = require("mongoose");
 
 var TodoTaskSchema = mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    description: {
+    content: {
         type: String,
         required: true
     },
@@ -15,4 +11,4 @@ var TodoTaskSchema = mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('TodoTasks', TodoTaskSchema);
+module.exports = mongoose.model('TodoTask', TodoTaskSchema);
