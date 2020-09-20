@@ -2,35 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Homepage | Welcome</title>
-
-    <link rel="stylesheet" href="/style.css">
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,400&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Raleway:700&display=swap" rel="stylesheet" />
+    <% include ../partials/head %>
 </head>
 
 <body>
-    <!-- START NAV -->
-
-    <nav id="navbar" class="nav">
-        <ul class="nav-list">
-            <li>
-                <a href="#welcome-section">About</a>
-            </li>
-            <li>
-                <a href="#projects">Work</a>
-            </li>
-            <li>
-                <a href="#contact">Contact</a>
-            </li>
-        </ul>
-    </nav>
-
-    <!-- END NAV -->
+    <header>
+        <% include ../partials/header %>
+    </header>
 
     <!-- START WELCOME SECTION -->
 
@@ -42,7 +20,6 @@
     <!-- END WELCOME SECTION -->
 
     <!-- START PROJECTS SECTION -->
-
     <section id="projects" class="projects-section">
         <h2 class="projects-section-header">These are some projects</h2>
 
@@ -118,18 +95,9 @@
     </section>
 
     <!-- END CONTACT SECTION -->
-
-    <!-- START FOOTER SECTION -->
-
-
-    <!-- END FOOTER SECTION -->
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
 </body>
-<footer>
-    <p>
-    </p>
-    <p>
-        &copy; Created by VuHuyKhoi
-    </p>
-</footer>
 
 </html>
