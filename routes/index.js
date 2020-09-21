@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('pages/index', { title: 'Homepage' });
+    res.render('pages/index', { title: 'Home | K-Zone' });
 });
 
 module.exports = router;

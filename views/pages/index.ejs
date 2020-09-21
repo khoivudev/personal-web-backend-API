@@ -1,8 +1,14 @@
 <div class="home-container">
     <!-- START WELCOME SECTION -->
     <section id="welcome-section" class="welcome-section">
-        <h1>Hey I am Khoi</h1>
-        <p>a web developer</p>
+         <%if(user){%>
+                     <h1>Welcome, <%= user.name %> !</h1>
+            <p>How are you doing today ?</p>
+                    <%}else{%>
+                        <h1>Hey I am Khoi</h1>
+            <p>a web developer</p>
+                        <%}%>
+
     </section>
 
     <!-- END WELCOME SECTION -->
