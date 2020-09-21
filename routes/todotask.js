@@ -6,12 +6,14 @@ const { ensureAuthenticated } = require('../config/auth');
 //POST METHOD
 router.post('/', ensureAuthenticated, async(req, res) => {
     const todoTask = new TodoTask({
+        userid: req.user._id,
         content: req.body.content
     });
     try {
         await todoTask.save();
         res.redirect("/todotask");
         console.log("success");
+        console.log(todoTask);
     } catch (err) {
         res.redirect("/todotask");
         console.log("error");
@@ -20,7 +22,7 @@ router.post('/', ensureAuthenticated, async(req, res) => {
 
 // GET METHOD
 router.get("/", ensureAuthenticated, (req, res) => {
-    TodoTask.find({}, (err, tasks) => {
+    TodoTask.find({ userid: req.user._id }, (err, tasks) => {
         res.render('pages/todotask/todotask', { title: 'todolist', todoTasks: tasks });
     });
 });
@@ -28,7 +30,7 @@ router.get("/", ensureAuthenticated, (req, res) => {
 //UPDATE
 router.get("/edit/:id", ensureAuthenticated, (req, res) => {
     const id = req.params.id;
-    TodoTask.find({}, (err, tasks) => {
+    TodoTask.find({ userid: req.user._id }, (err, tasks) => {
         res.render("pages/todotask/todoEdit", { title: 'todolist', todoTasks: tasks, idTask: id });
     });
 })

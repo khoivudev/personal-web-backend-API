@@ -1,6 +1,10 @@
 var mongoose = require("mongoose");
 
 var TodoTaskSchema = mongoose.Schema({
+    userid: {
+        type: String,
+        required: true
+    },
     content: {
         type: String,
         required: true
