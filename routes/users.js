@@ -8,12 +8,12 @@ const { ensureAuthenticated } = require('../config/auth');
 
 //Login Page
 router.get('/login', (req, res) => {
-    res.render('pages/user/login', { title: 'Login' });
+    res.render('pages/user/login', { title: 'Login | K-Zone' });
 });
 
 //Register Page
 router.get('/register', (req, res) => {
-    res.render('pages/user/register', { title: 'Register' });
+    res.render('pages/user/register', { title: 'Register | K-Zone' });
 });
 
 //Register Handle

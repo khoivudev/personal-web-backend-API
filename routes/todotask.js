@@ -23,7 +23,7 @@ router.post('/', ensureAuthenticated, async(req, res) => {
 // GET METHOD
 router.get("/", ensureAuthenticated, (req, res) => {
     TodoTask.find({ userid: req.user._id }, (err, tasks) => {
-        res.render('pages/todotask/todotask', { title: 'todolist', todoTasks: tasks });
+        res.render('pages/todotask/todotask', { title: 'Projects | to-do list | K-Zone', todoTasks: tasks });
     });
 });
 
@@ -31,7 +31,7 @@ router.get("/", ensureAuthenticated, (req, res) => {
 router.get("/edit/:id", ensureAuthenticated, (req, res) => {
     const id = req.params.id;
     TodoTask.find({ userid: req.user._id }, (err, tasks) => {
-        res.render("pages/todotask/todoEdit", { title: 'todolist', todoTasks: tasks, idTask: id });
+        res.render("pages/todotask/todoEdit", { title: 'Projects | to-do list| K-Zone', todoTasks: tasks, idTask: id });
     });
 })
 

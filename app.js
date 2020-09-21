@@ -1,4 +1,5 @@
 var createError = require('http-errors');
+var favicon = require('serve-favicon');
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
@@ -13,6 +14,9 @@ var todotaskRouter = require('./routes/todotask');
 var flash = require('connect-flash');
 var session = require('express-session');
 const passport = require('passport');
+
+//Set webapp icon
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 //Passport config
 require('./config/passport')(passport);
