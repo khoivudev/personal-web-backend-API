@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var TodoTask = require("../models/TodoTask");
+const { ensureAuthenticated } = require('../config/auth');
 
 //POST METHOD
-router.post('/', async(req, res) => {
+router.post('/', ensureAuthenticated, async(req, res) => {
     const todoTask = new TodoTask({
         content: req.body.content
     });
@@ -18,21 +19,21 @@ router.post('/', async(req, res) => {
 });
 
 // GET METHOD
-router.get("/", (req, res) => {
+router.get("/", ensureAuthenticated, (req, res) => {
     TodoTask.find({}, (err, tasks) => {
         res.render('pages/todotask/todotask', { title: 'todolist', todoTasks: tasks });
     });
 });
 
 //UPDATE
-router.get("/edit/:id", (req, res) => {
+router.get("/edit/:id", ensureAuthenticated, (req, res) => {
     const id = req.params.id;
     TodoTask.find({}, (err, tasks) => {
         res.render("pages/todotask/todoEdit", { title: 'todolist', todoTasks: tasks, idTask: id });
     });
 })
 
-router.post("/edit/:id", (req, res) => {
+router.post("/edit/:id", ensureAuthenticated, (req, res) => {
     const id = req.params.id;
     TodoTask.findByIdAndUpdate(id, { content: req.body.content }, err => {
         if (err) return res.send(500, err);
@@ -41,7 +42,7 @@ router.post("/edit/:id", (req, res) => {
 });
 
 //DELETE
-router.get("/remove/:id", (req, res) => {
+router.get("/remove/:id", ensureAuthenticated, (req, res) => {
     const id = req.params.id;
     TodoTask.findByIdAndRemove(id, err => {
         if (err) return res.send(500, err);

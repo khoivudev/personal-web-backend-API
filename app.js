@@ -12,13 +12,17 @@ var usersRouter = require('./routes/users');
 var todotaskRouter = require('./routes/todotask');
 var flash = require('connect-flash');
 var session = require('express-session');
+const passport = require('passport');
+
+//Passport config
+require('./config/passport')(passport);
 
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
-
 app.use(logger('dev'));
+
 //Body Parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -34,6 +38,10 @@ app.use(session({
     saveUninitialized: true,
 }))
 
+//Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 //Connect Flash
 app.use(flash());
 
@@ -41,6 +49,8 @@ app.use(flash());
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    res.locals.user = req.user;
     next();
 })
 

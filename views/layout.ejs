@@ -25,8 +25,12 @@
                 <a href=" #welcome-section ">About</a>
                 <a href="#projects ">Work</a>
                 <a href="#contact ">Contact</a>
+                <%if(user){%>
+                <a href="/users/logout ">Logout</a>
+                <%}else{%>
                 <a href="/users/register ">Register</a>
                 <a href="/users/login ">Login</a>
+                <%}%>
             </div>
         </div>
     </header>
