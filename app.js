@@ -6,21 +6,45 @@ require('dotenv/config');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var expressLayouts = require('express-ejs-layouts');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var todotaskRouter = require('./routes/todotask');
+var flash = require('connect-flash');
+var session = require('express-session');
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+//app.set('views', path.join(__dirname, 'views'));
+app.use(expressLayouts);
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
+//Body Parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//Express Session
+app.use(session({
+    secret: 'secret ',
+    resave: true,
+    saveUninitialized: true,
+}))
+
+//Connect Flash
+app.use(flash());
+
+//Global Vars
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    next();
+})
+
+//Routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/todotask', todotaskRouter);
@@ -42,8 +66,8 @@ app.use(function(err, req, res, next) {
 });
 
 //Connect to DB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true },
-    () => console.log('connected to DB!')
-);
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(console.log("MongoDB Connected!"))
+    .catch(err => console.log(err));
 
 module.exports = app;
