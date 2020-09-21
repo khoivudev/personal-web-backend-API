@@ -457,15 +457,16 @@ footer i {
 }
 
 .todo-container {
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #000;
     background-image: linear-gradient(62deg, #3a3d40 0%, #181719 100%);
     color: var(--main-white);
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 .todo-container .card-body {
@@ -474,7 +475,7 @@ footer i {
 }
 
 .todo {
-    width: 400px;
+    width: 550px;
 }
 
 .todo-container h2 {
@@ -545,7 +546,7 @@ footer i {
 .todo-list-item button {
     color: white;
     border: none;
-    border-radius: 100%;
+    border-radius: 50%;
     cursor: pointer;
     padding: 5px;
     font-family: 'Candal', sans-serif;
