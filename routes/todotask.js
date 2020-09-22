@@ -28,28 +28,59 @@ router.get("/", ensureAuthenticated, (req, res) => {
 });
 
 //UPDATE
-router.get("/edit/:id", ensureAuthenticated, (req, res) => {
-    const id = req.params.id;
-    TodoTask.find({ userid: req.user._id }, (err, tasks) => {
-        res.render("pages/todotask/todoEdit", { title: 'to-do list| K-Zone', todoTasks: tasks, idTask: id });
-    });
+router.get("/edit/:id", ensureAuthenticated, async(req, res) => {
+    try {
+        let task = await TodoTask.findById(req.params.id).lean()
+        if (!task) {
+            return res.send(404, err);
+        }
+        if (task.userid != req.user._id) {
+            res.redirect('/todotask');
+        } else {
+            tasks = await TodoTask.find({ userid: req.user._id });
+            res.render("pages/todotask/todoEdit", { title: 'to-do list| K-Zone', todoTasks: tasks, idTask: req.params.id });
+        };
+    } catch (err) {
+        console.log(err);
+        return res.send(404, err);
+    }
 })
 
-router.post("/edit/:id", ensureAuthenticated, (req, res) => {
-    const id = req.params.id;
-    TodoTask.findByIdAndUpdate(id, { content: req.body.content }, err => {
-        if (err) return res.send(500, err);
-        res.redirect("/todotask");
-    });
+router.post("/edit/:id", ensureAuthenticated, async(req, res) => {
+    try {
+        let task = await TodoTask.findById(req.params.id).lean()
+        if (!task) {
+            return res.send(404, err);
+        }
+        if (task.userid != req.user._id) {
+            res.redirect('/todotask');
+        } else {
+            task = await TodoTask.findByIdAndUpdate({ _id: req.params.id }, { content: req.body.content });
+            res.redirect("/todotask");
+        };
+    } catch (err) {
+        console.log(err);
+        return res.send(404, err);
+    }
 });
 
 //DELETE
-router.get("/remove/:id", ensureAuthenticated, (req, res) => {
-    const id = req.params.id;
-    TodoTask.findByIdAndRemove(id, err => {
-        if (err) return res.send(500, err);
-        res.redirect("/todotask");
-    });
+router.get("/remove/:id", ensureAuthenticated, async(req, res) => {
+    try {
+        let task = await TodoTask.findById(req.params.id).lean()
+        if (!task) {
+            return res.send(500, err);
+        }
+        if (task.userid != req.user._id) {
+            res.redirect('/todotask');
+        } else {
+            await TodoTask.findByIdAndRemove(req.params.id);
+            res.redirect("/todotask");
+        };
+    } catch (err) {
+        console.log(err);
+        return res.send(404, err);
+    }
 });
 
 module.exports = router;
