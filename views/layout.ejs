@@ -25,7 +25,7 @@
                 <a href="/#welcome-section ">About</a>
                 <a href="/#projects ">Work</a>
                 <a href="/#contact ">Contact</a>
-                <%if(user){%>
+                <%if(user_is_logged_in){%>
                     <a href="/users/logout ">Logout</a>
                     <%}else{%>
                         <a href="/users/register ">Register</a>
