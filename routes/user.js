@@ -97,9 +97,13 @@ router.post('/login', (req, res, next) => {
 
 //Login with Github
 router.get('/auth/github', passport.authenticate('github'));
-router.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/user/login' }), (req, res) => {
-    res.redirect('/');
-});
+router.get('/auth/github/callback', (req, res, next) => {
+    passport.authenticate('github', {
+        successRedirect: '/',
+        failureRedirect: '/user/login',
+        failureFlash: true
+    })(req, res, next);
+})
 
 //Logout Handle
 router.get('/logout', ensureAuthenticated, (req, res) => {

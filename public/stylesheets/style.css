@@ -264,14 +264,20 @@ img {
     font-size: 1.5rem;
 }
 
-.login-section button {
+.login-section .btn-login {
     font-size: 1.5rem;
     background-color: var(--main-red);
 }
 
-.login-section button:hover {
+.login-section .btn-git {
     font-size: 1.5rem;
-    background-color: var(--main-much-red);
+    background-color: #444;
+    border-color: rgba(0, 0, 0, 0.2);
+    color: var(--main-white) !important;
+}
+
+.dark-on-hover:hover {
+    filter: brightness(50%);
 }
 
 

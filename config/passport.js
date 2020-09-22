@@ -35,9 +35,28 @@ module.exports = function(passport) {
                 clientSecret: process.env.GITHUB_CLIENT_SECRET,
                 callbackURL: "https://vuhuykhoi.herokuapp.com/user/auth/github/callback"
             },
-            function(accessToken, refreshToken, profile, done) {
+            async(accessToken, refreshToken, profile, done) => {
                 console.log(profile);
                 //Database logic here with callback containing our user object
+                const newUser = {
+                    githubId: profile.id,
+                    name: profile.displayName || 'A github User',
+                    photo: profile.photos[0].value || '',
+                    email: Array.isArray(profile.emails) ? profile.emails[0].value : 'No public email',
+                    provider: profile.provider || ''
+                }
+
+                try {
+                    let user = await User.findOne({ githubId: profile.id });
+                    if (user) {
+                        done(null, user);
+                    } else {
+                        user = await User.create(newUser);
+                        done(null, user);
+                    }
+                } catch (err) {
+                    console.log(err);
+                }
             }
         ));
 
