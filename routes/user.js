@@ -75,7 +75,7 @@ router.post('/register', (req, res) => {
                             newUser.save()
                                 .then(user => {
                                     req.flash('success_msg', 'You are now registed and can log in');
-                                    res.redirect('/users/login');
+                                    res.redirect('/user/login');
                                     console.log(user);
                                 })
                                 .catch(err => console.log(err));
@@ -90,16 +90,22 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
         successRedirect: '/',
-        failureRedirect: '/users/login',
+        failureRedirect: '/user/login',
         failureFlash: true
     })(req, res, next);
 })
+
+//Login with Github
+router.get('/auth/github', passport.authenticate('github'));
+router.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/user/login' }), (req, res) => {
+    res.redirect('/');
+});
 
 //Logout Handle
 router.get('/logout', ensureAuthenticated, (req, res) => {
     req.logout();
     req.flash('success_msg', 'You are logged out');
-    res.redirect('/users/login');
+    res.redirect('/user/login');
 });
 
 module.exports = router;

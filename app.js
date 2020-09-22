@@ -9,7 +9,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var expressLayouts = require('express-ejs-layouts');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var userRouter = require('./routes/user');
 var todotaskRouter = require('./routes/todotask');
 var flash = require('connect-flash');
 var session = require('express-session');
@@ -65,7 +65,7 @@ app.use((req, res, next) => {
 
 //Routes
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', userRouter);
 app.use('/todotask', todotaskRouter);
 
 // catch 404 and forward to error handler
