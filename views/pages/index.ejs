@@ -1,13 +1,14 @@
 <div class="home-container">
     <!-- START WELCOME SECTION -->
     <section id="welcome-section" class="welcome-section">
-         <%if(user){%>
-                     <h1>Welcome, <%= user.name %> !</h1>
+        <%if(user){%>
+            <h1>Welcome,
+                <%= user.name %> !</h1>
             <p>How are you doing today ?</p>
-                    <%}else{%>
-                        <h1>Hey I am Khoi</h1>
-            <p>a web developer</p>
-                        <%}%>
+            <%}else{%>
+                <h1>Hey I am Khoi</h1>
+                <p>a web developer</p>
+                <%}%>
 
     </section>
 
@@ -26,7 +27,23 @@
                 </p>
             </a>
 
-            <a href="#" target="_blank" class="project project-tile">
+            <a href="#" target="_self" class="project project-tile">
+                <img class="project-image" src="/images/chatroom.png" alt="project" />
+                <p class="project-title">
+                    <span class="code">&lt;</span> Funny chat room
+                    <span class="code">&#47;&gt;</span>
+                </p>
+            </a>
+
+            <a href="#" target="_self" class="project project-tile">
+                <img class="project-image" src="/images/sudoku.png" alt="project" />
+                <p class="project-title">
+                    <span class="code">&lt;</span> Sudoku
+                    <span class="code">&#47;&gt;</span>
+                </p>
+            </a>
+
+            <a href="#" target="_self" class="project project-tile">
                 <img class="project-image" src="/images/addressbook.jpg" alt="project" />
                 <p class="project-title">
                     <span class="code">&lt;</span> Contact book
@@ -34,7 +51,7 @@
                 </p>
             </a>
 
-            <a href="#" target="_blank" class="project project-tile">
+            <a href="#" target="_self" class="project project-tile">
                 <img class="project-image" src="/images/ai_chatbot.jpeg" alt="project" />
                 <p class="project-title">
                     <span class="code">&lt;</span> Chat with my AI assistant
@@ -42,13 +59,7 @@
                 </p>
             </a>
 
-            <a href="#" target="_blank" class="project project-tile">
-                <img class="project-image" src="/images/chatroom.png" alt="project" />
-                <p class="project-title">
-                    <span class="code">&lt;</span> Funny chat room
-                    <span class="code">&#47;&gt;</span>
-                </p>
-            </a>
+
         </div>
 
         <a href="https://github.com/vuhuykhoi" class="btn btn-show-all" target="_blank">Show all<i class="fas fa-chevron-right"></i
