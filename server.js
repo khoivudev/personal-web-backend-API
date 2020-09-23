@@ -1,22 +1,30 @@
-var createError = require('http-errors');
-var favicon = require('serve-favicon');
-var express = require('express');
-var app = express();
-var mongoose = require('mongoose');
+const createError = require('http-errors');
+const favicon = require('serve-favicon');
 require('dotenv/config');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var expressLayouts = require('express-ejs-layouts');
 
-var flash = require('connect-flash');
-var session = require('express-session');
+const express = require('express');
+const http = require('http');
+const socketio = require('socket.io');
+
+const mongoose = require('mongoose');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const expressLayouts = require('express-ejs-layouts');
+
+const flash = require('connect-flash');
+const session = require('express-session');
 const passport = require('passport');
 
-var indexRouter = require('./routes/index');
-var userRouter = require('./routes/user');
-var todotaskRouter = require('./routes/todotask');
-var chatRouter = require('./routes/chat');
+const indexRouter = require('./routes/index');
+const userRouter = require('./routes/user');
+const todotaskRouter = require('./routes/todotask');
+const chatRouter = require('./routes/chat');
+
+
+const app = express()
+const server = http.createServer(app);
+const io = socketio(server);
 
 //Set webapp icon
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
@@ -93,4 +101,5 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
     .then(console.log("MongoDB Connected!"))
     .catch(err => console.log(err));
 
-module.exports = app;
+const PORT = 3000 || process.env.PORT;
+server.listen(PORT, () => console.log(`Server is running on port ${PORT}`))

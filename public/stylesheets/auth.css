@@ -11,6 +11,10 @@
     color: var(--main-gray);
 }
 
+.login-container .btn {
+    background-color: var(--main-red);
+}
+
 .login-container .form-control {
     font-size: 1.5rem;
 }

@@ -324,7 +324,6 @@ img {
     cursor: pointer;
     padding: 5px 15px;
     color: var(--main-white);
-    background-color: var(--main-red);
     border: 0;
     font-size: 17px;
 }
