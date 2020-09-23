@@ -1,4 +1,5 @@
 const createError = require('http-errors');
+const moment = require('moment');
 const favicon = require('serve-favicon');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -137,7 +138,13 @@ io.on('connection', socket => {
         socket.join(user.room);
 
         //Welcome current user
-        socket.emit('message', formatMessage(botName, 'Welcome to ChatRoom!'));
+        socket.emit('message', {
+            username: botName,
+            text: 'Welcome to ChatRoom!',
+            time: moment().format('h:mm a'),
+            client: socket.request.user.username
+        });
+
 
         //Broadcast when a user connects
         socket.broadcast.to(user.room).emit('message', formatMessage(botName, `${user.username} has joined the chat`));
@@ -164,5 +171,5 @@ io.on('connection', socket => {
     });
 });
 
-const PORT = 3000 || process.env.PORT;
+const PORT = process.env.PORT;
 server.listen(PORT, () => console.log(`Server is running on port ${PORT}`))

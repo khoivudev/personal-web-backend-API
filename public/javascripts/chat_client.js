@@ -4,6 +4,7 @@ const roomName = document.getElementById('room-name');
 const usersList = document.getElementById('users');
 
 const socket = io();
+var username = "";
 
 //Get Room from URL
 const { room } = Qs.parse(location.search, {
@@ -48,8 +49,18 @@ chatForm.addEventListener('submit', (e) => {
 function outputMessage(message) {
     const div = document.createElement('div');
     div.classList.add('message');
-    div.innerHTML = `<p class="meta">${message.username} <span>${message.time}</span>
-                        <p class="text">${message.text}</p>`;
+    if (message.client) {
+        username = message.client;
+    }
+
+    if (message.username == username) {
+        div.innerHTML = `<div class="client"><p class="meta">${message.username} <span>${message.time}</span>
+        <p class="text">${message.text}</p></div>`;
+    } else {
+        div.innerHTML = `<div class="server"><p class="meta">${message.username} <span>${message.time}</span>
+        <p class="text">${message.text}</p></div>`;
+    }
+
     document.querySelector('.room-messages').appendChild(div);
 }
 
