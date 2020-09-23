@@ -8,12 +8,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var expressLayouts = require('express-ejs-layouts');
-var indexRouter = require('./routes/index');
-var userRouter = require('./routes/user');
-var todotaskRouter = require('./routes/todotask');
+
 var flash = require('connect-flash');
 var session = require('express-session');
 const passport = require('passport');
+
+var indexRouter = require('./routes/index');
+var userRouter = require('./routes/user');
+var todotaskRouter = require('./routes/todotask');
+var chatRouter = require('./routes/chat');
 
 //Set webapp icon
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
@@ -67,6 +70,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/todotask', todotaskRouter);
+app.use('/chat', chatRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
