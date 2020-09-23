@@ -30,7 +30,7 @@ html {
      * default document font size = 16px, 1rem = 16px, 100% = 16px
      * (100% / 16px) * 10 = 62.5%, 1rem = 10px, 62.5% = 10px
     */
-    font-size: 60%;
+    font-size: 50%;
     scroll-behavior: smooth;
 }
 
@@ -274,6 +274,10 @@ img {
     color: var(--main-white);
     border: 0;
     font-size: 17px;
+}
+
+.dark-on-hover:hover {
+    filter: brightness(70%);
 }
 
 .btn-show-all {
