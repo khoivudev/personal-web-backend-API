@@ -1,36 +1,40 @@
 const createError = require('http-errors');
 const favicon = require('serve-favicon');
-require('dotenv/config');
-
-const express = require('express');
-const http = require('http');
-const socketio = require('socket.io');
-
 const mongoose = require('mongoose');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const expressLayouts = require('express-ejs-layouts');
-
 const flash = require('connect-flash');
+require('dotenv/config');
+
+const express = require('express');
+const http = require('http');
 const session = require('express-session');
+
 const passport = require('passport');
+//Passport config
+require('./config/passport')(passport);
+
+const formatMessage = require('./utils/chat/messages');
+const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./utils/chat/users');
+const { onAuthorizeSuccess, onAuthorizeFail } = require('./utils/chat/socket_auth');
+const passportSocketIo = require('passport.socketio');
+const MongoStore = require('connect-mongo')(session);;
+const URI = process.env.MONGO_URI;
+const store = new MongoStore({ url: URI });
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const todotaskRouter = require('./routes/todotask');
 const chatRouter = require('./routes/chat');
 
-
 const app = express()
 const server = http.createServer(app);
-const io = socketio(server);
+const io = require('socket.io')(server);
 
 //Set webapp icon
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
-
-//Passport config
-require('./config/passport')(passport);
 
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
@@ -45,12 +49,14 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 //Express Session
 app.use(session({
-    secret: 'secret ',
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
+    cookie: { secure: false },
+    key: 'express.sid',
+    store: store
 }))
 
 //Passport middleware
@@ -100,6 +106,63 @@ app.use(function(err, req, res, next) {
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(console.log("MongoDB Connected!"))
     .catch(err => console.log(err));
+
+
+//INIT SOCKET
+io.use(
+    passportSocketIo.authorize({
+        cookieParser: cookieParser,
+        key: 'express.sid',
+        secret: process.env.SESSION_SECRET,
+        store: store,
+        success: onAuthorizeSuccess,
+        fail: onAuthorizeFail
+    })
+);
+
+const botName = 'K-Zone Bot';
+//Run when client connect
+io.on('connection', socket => {
+    /*
+    WAY1: Emit message for the user that connecting
+        socket.emit();
+    WAY2: Emit message to all user EXCEPT the user connecting
+        socket.broadcast.emit();
+    WAY3: Emit message for all
+        io.emit()
+    */
+    socket.on('joinRoom', ({ room }) => {
+        const user = userJoin(socket.id, socket.request.user.username, room);
+
+        socket.join(user.room);
+
+        //Welcome current user
+        socket.emit('message', formatMessage(botName, 'Welcome to ChatRoom!'));
+
+        //Broadcast when a user connects
+        socket.broadcast.to(user.room).emit('message', formatMessage(botName, `${user.username} has joined the chat`));
+
+        //Send users and room info
+        io.to(user.room).emit('roomUsers', {
+            room: user.room,
+            users: getRoomUsers(user.room)
+        });
+    });
+
+    //Listen for chat message
+    socket.on('chatMessage', msg => {
+        const user = getCurrentUser(socket.id);
+        io.to(user.room).emit('message', formatMessage(`${user.username}`, msg));
+    });
+
+    //Run when client disconnects
+    socket.on('disconnect', () => {
+        const user = userLeave(socket.id);
+        if (user) {
+            io.to(user.room).emit('message', formatMessage(botName, `${user.username} has left the chat`));
+        }
+    });
+});
 
 const PORT = 3000 || process.env.PORT;
 server.listen(PORT, () => console.log(`Server is running on port ${PORT}`))

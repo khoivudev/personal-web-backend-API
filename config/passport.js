@@ -40,7 +40,7 @@ module.exports = function(passport) {
                 //Database logic here with callback containing our user object
                 const newUser = {
                     githubId: profile.id,
-                    name: profile.displayName || 'A github User',
+                    username: profile.displayName || 'A github User',
                     photo: profile.photos[0].value || '',
                     email: Array.isArray(profile.emails) ? profile.emails[0].value : 'No public email',
                     provider: profile.provider || ''

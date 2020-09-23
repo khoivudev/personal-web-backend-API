@@ -18,11 +18,11 @@ router.get('/register', (req, res) => {
 
 //Register Handle
 router.post('/register', (req, res) => {
-    const { name, email, password, password2 } = req.body;
+    const { username, email, password, password2 } = req.body;
     let errors = [];
 
     //Check required field
-    if (!name || !email || !password || !password2) {
+    if (!username || !email || !password || !password2) {
         errors.push({ msg: 'Please fill in all feilds' });
     }
 
@@ -40,7 +40,7 @@ router.post('/register', (req, res) => {
         res.render('pages/user/register', {
             title: "Register",
             errors,
-            name,
+            username,
             password,
             password2
         });
@@ -54,13 +54,13 @@ router.post('/register', (req, res) => {
                     res.render('pages/user/register', {
                         title: "Register",
                         errors,
-                        name,
+                        username,
                         password,
                         password2
                     });
                 } else {
                     const newUser = new User({
-                        name,
+                        username,
                         email,
                         password
                     });
@@ -97,13 +97,10 @@ router.post('/login', (req, res, next) => {
 
 //Login with Github
 router.get('/auth/github', passport.authenticate('github'));
-router.get('/auth/github/callback', (req, res, next) => {
-    passport.authenticate('github', {
-        successRedirect: '/',
-        failureRedirect: '/user/login',
-        failureFlash: true
-    })(req, res, next);
-})
+router.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/user/login', }), (req, res) => {
+    req.session.user_id = req.user._id
+    res.redirect('/');
+});
 
 //Logout Handle
 router.get('/logout', ensureAuthenticated, (req, res) => {
