@@ -380,3 +380,16 @@ footer i {
         text-align: center;
     }
 }
+
+.my-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #000;
+    background-image: linear-gradient(62deg, #3a3d40 0%, #181719 100%);
+    color: var(--main-white);
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
