@@ -70,11 +70,6 @@ ul {
     list-style: none;
 }
 
-.my-nav a {
-    text-decoration: none;
-    color: var(--main-white);
-}
-
 img {
     display: block;
     width: 100%;
@@ -143,7 +138,13 @@ a#logo:hover {
     display: none;
 }
 
-@media (max-width:600px) {
+@media (max-width: 20.75em) {
+    .nav {
+        justify-content: center;
+    }
+    .nav-links {
+        margin: 0 1rem;
+    }
     .nav>.nav-btn {
         display: inline-block;
         position: absolute;
@@ -187,6 +188,9 @@ a#logo:hover {
     .nav>#nav-check:checked~.nav-links {
         height: calc(100vh - 50px);
         overflow-y: auto;
+    }
+    #logo {
+        display: none;
     }
 }
 

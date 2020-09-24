@@ -5,27 +5,31 @@
             <a href="/chat" class="btn dark-on-hover">Leave Room</a>
         </header>
         <main class="room-main">
-            <div class="room-sidebar">
-                <h3><i class="fas fa-comments"></i> Room Name:</h3>
-                <h2 id="room-name"></h2>
-                <h3><i class="fas fa-users"></i> Users</h3>
-                <ul id="users"></ul>
+            <div class="col-md-12">
+                <div class="room-sidebar">
+                    <h3><i class="fas fa-comments"></i> Room Name:</h3>
+                    <h2 id="room-name"></h2>
+                    <h3><i class="fas fa-users"></i> Users</h3>
+                    <ul id="users"></ul>
+                </div>
             </div>
-            <div class="room-messages">
-                <!-- <div class="message">
+            <div class="col-md-12">
+                <div class="room-messages">
+                    <!-- <div class="message">
                     <p class="meta">Brad<span>0:12pm</span>
                         <p class="text">
                             Blabla
                         </p>
-                </div> -->
+                    </div> -->
+                </div>
+                <div class="room-form-container">
+                    <form id="room-form">
+                        <input id="msg" type="text" placeholder="Enter Message..." required autocomplete="off" />
+                        <button class="btn dark-on-hover"><i class="fas fa-paper-plane"></i> Send</button>
+                    </form>
+                </div>
             </div>
         </main>
-        <div class="room-form-container">
-            <form id="room-form">
-                <input id="msg" type="text" placeholder="Enter Message..." required autocomplete="off" />
-                <button class="btn dark-on-hover"><i class="fas fa-paper-plane"></i> Send</button>
-            </form>
-        </div>
     </div>
 </div>
 
