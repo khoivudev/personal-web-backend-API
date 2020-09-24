@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>
-
+    <%= title%>
     </title>
 
 
@@ -24,8 +24,9 @@
     <header>
         <div class="nav">
             <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/#welcome-section ">About</a>
+                <a id="logo" href="/">K-Zone</a>
+                <a href="/#welcome">Home</a>
+                <a href="/#about">About</a>
                 <a href="/#projects ">Work</a>
                 <a href="/#contact ">Contact</a>
                 <%if(user_is_logged_in){%>
