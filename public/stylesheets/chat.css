@@ -78,41 +78,51 @@ a {
 }
 
 .room-messages {
-    height: 400px;
+    height: 350px;
     overflow-y: scroll;
     border-width: 0.5px;
     border-style: solid;
     border-color: var(--main-gray);
     border-radius: 1%;
+    display: flex;
+    flex-direction: column;
 }
 
 .room-messages .message {
-    margin: 5px;
-    background-color: white;
-    border-radius: 10px;
+    border-radius: 1.3rem;
     overflow-wrap: break-word;
-    max-width: 520px;
+    max-width: 350px;
     width: fit-content;
-    display: flex;
     flex-direction: column;
     list-style: none;
+    margin: 5px;
 }
 
 .server {
     background-color: #f1f0f0;
     border-radius: 1.3em;
+    padding: 5px;
+}
+
+.server p {
+    color: black;
 }
 
 .client {
     background-color: rgb(0, 153, 255);
     border-radius: 1.3em;
+    padding: 5px;
+    align-self: flex-end;
+}
+
+.client p {
+    color: white;
 }
 
 .room-messages .message .meta {
     font-size: 12px;
     font-weight: bold;
-    color: black;
-    margin-bottom: 7px;
+    margin: 0;
 }
 
 .room-container li {
@@ -121,15 +131,12 @@ a {
 
 .room-messages .message .text {
     font-size: 14px;
-    color: var(--main-black);
-}
-
-.room-messages .message .meta span {
-    color: black;
+    margin: 0;
 }
 
 .room-form-container {
     background: white;
+    margin-top: 10px;
 }
 
 .room-form-container form {
@@ -137,12 +144,14 @@ a {
 }
 
 .room-form-container input[type='text'] {
-    font-size: 16px;
-    padding: 5px;
+    font-size: 14px;
     height: 40px;
     flex: 1;
     float: right;
     width: 100%;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(0, 0, 0, .09);
 }
 
 
