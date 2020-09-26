@@ -29,6 +29,7 @@ const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const todotaskRouter = require('./routes/todotask');
 const chatRouter = require('./routes/chat');
+const apiRouter = require('./routes/api/freecodecamp_api');
 
 const app = express()
 const server = http.createServer(app);
@@ -86,6 +87,7 @@ app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/todotask', todotaskRouter);
 app.use('/chat', chatRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
