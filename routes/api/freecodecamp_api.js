@@ -49,7 +49,7 @@ router.get('/whoami', (req, res) => {
     console.log('ipaddress: ' + ip);
     console.log('software: ' + JSON.stringify(software.os.name) + " " + JSON.stringify(software.os.version));
     console.log('language: ' + language.split(',')[0]);
-    res.send(userObject)
+    res.json(userObject);
 })
 
 

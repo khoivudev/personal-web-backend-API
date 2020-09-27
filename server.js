@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const expressLayouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 require('dotenv/config');
 
@@ -29,20 +28,14 @@ const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const todotaskRouter = require('./routes/todotask');
 const chatRouter = require('./routes/chat');
-const apiRouter = require('./routes/api/freecodecamp_api');
+const apiFreeCodeCampRouter = require('./routes/api/freecodecamp_api');
+const apiTodoTaskRouter = require('./routes/api/todotask');
 
 const app = express()
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 
-//Set webapp icon
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
-// view engine setup
-//app.set('views', path.join(__dirname, 'views'));
-app.use(expressLayouts);
-app.set('view engine', 'ejs');
-app.use(logger('dev'));
 
 //Body Parser
 app.use(express.urlencoded({ extended: true }));
@@ -87,7 +80,10 @@ app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/todotask', todotaskRouter);
 app.use('/chat', chatRouter);
-app.use('/api', apiRouter);
+
+//API
+app.use('/api/freecodecamp_api', apiFreeCodeCampRouter);
+app.use('/api/todotask', apiTodoTaskRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
