@@ -30,6 +30,7 @@ const todotaskRouter = require('./routes/todotask');
 const chatRouter = require('./routes/chat');
 const apiFreeCodeCampRouter = require('./routes/api/freecodecamp_api');
 const apiTodoTaskRouter = require('./routes/api/todotask');
+const apiQuoteRouter = require('./routes/api/quote');
 
 const app = express()
 const server = http.createServer(app);
@@ -84,6 +85,7 @@ app.use('/chat', chatRouter);
 //API
 app.use('/api/freecodecamp_api', apiFreeCodeCampRouter);
 app.use('/api/todotask', apiTodoTaskRouter);
+app.use('/api/quote', apiQuoteRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
