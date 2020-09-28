@@ -7,7 +7,7 @@ const express = require('express');
 const http = require('http');
 
 
-const apiFreeCodeCampRouter = require('./routes/api/freecodecamp_api');
+const apiRouter = require('./routes/api/api');
 const apiTodoTaskRouter = require('./routes/api/todotask');
 const apiQuoteRouter = require('./routes/api/quote');
 const apiProjectRouter = require('./routes/api/project');
@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //API
-app.use('/api/freecodecamp_api', apiFreeCodeCampRouter);
+app.use('/api/', apiRouter);
 app.use('/api/todotask', apiTodoTaskRouter);
 app.use('/api/quote', apiQuoteRouter);
 app.use('/api/project',apiProjectRouter);

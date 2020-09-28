@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var parser = require('ua-parser-js');
 
-router.get("/hello", (req, res) => {
-    res.json({ greeting: 'hello API' });
+router.get("/", (req, res) => {
+    res.json({ greeting: 'Hello API' });
 });
 
 //APIs and Microservices Projects - Timestamp Microservice
