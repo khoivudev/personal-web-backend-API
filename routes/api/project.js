@@ -24,6 +24,7 @@ router.post("/", (req, res) => {
     tech: req.body.tech,
     img_url: req.body.img_url,
     project_url: req.body.project_url,
+    github_url: req.body.github_url,
   });
   newProject
     .save()
@@ -42,6 +43,7 @@ router.patch("/:id", async (req, res) => {
     if (req.body.tech) objForUpdate.tech = req.body.tech;
     if (req.body.img_url) objForUpdate.img_url = req.body.img_url;
     if (req.body.project_url) objForUpdate.project_url = req.body.project_url;
+    if (req.body.github_url) objForUpdate.github_url = req.body.github_url;
 
     let updatedProject = await Project.findOneAndUpdate(
       { _id: req.params.id },

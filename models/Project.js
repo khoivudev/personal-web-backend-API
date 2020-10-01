@@ -21,6 +21,10 @@ var ProjectSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  github_url: {
+    type: String,
+    required: false,
+  },
   date: {
     type: Date,
     default: Date.now,
